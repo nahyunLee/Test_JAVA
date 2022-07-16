@@ -1,4 +1,4 @@
-package com.wemakeprice;
+package nahyun.test_java;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class JavaTest {
+public class ImmutableTest {
 
     @Test
     @DisplayName("final도 값변경 가능")
