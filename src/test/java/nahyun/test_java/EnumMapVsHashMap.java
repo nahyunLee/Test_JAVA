@@ -1,14 +1,13 @@
-package com.wemakeprice;
+package nahyun.test_java;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EnumMapTest {
+class EnumMapTest {
 
     private final int TWO_BILLION = 2_000_000_000;
 
@@ -94,11 +93,18 @@ public class EnumMapTest {
         NAHYUN;
     }
 
-    @RequiredArgsConstructor
     private enum EnumIntegerTest {
         TWOTWO(22);
 
-        @Getter
         private final int raw;
+
+        EnumIntegerTest(int raw) {
+
+            this.raw = raw;
+        }
+
+        public int getRaw() {
+            return raw;
+        }
     }
 }
