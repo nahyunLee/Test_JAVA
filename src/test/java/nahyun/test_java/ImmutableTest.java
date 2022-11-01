@@ -80,5 +80,44 @@ public class ImmutableTest {
             return Collections.unmodifiableList(list);
         }
     }
+
+    @Test
+    @DisplayName("final 키워드는 재할당 금지. 내부 값 변경 가능")
+    void test_change_MutableClass() {
+        final MutableClass2 mutableClass2 = new MutableClass2(1);
+
+        mutableClass2.value = 2;
+
+        assertThat(mutableClass2.getValue()).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("참조변수 내부까지 immutable하도록 하면 참조 변수까지 immutable")
+    void test_change_ImmutableClass() {
+        final ImmutableClass2 immutableClass2 = new ImmutableClass2(1);
+//
+//        //immutable한 변수라서 애초에 접근 자체가 불가
+//        immutableClass2.value = 2;
+    }
+
+    static class MutableClass2 {
+        private int value;
+
+        public MutableClass2(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+    }
+
+    static class ImmutableClass2 {
+        private final int value;
+
+        public ImmutableClass2(int value) {
+            this.value = value;
+        }
+    }
 }
 
