@@ -1,0 +1,43 @@
+package nahyun.test_java;
+
+
+import java.time.LocalTime;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
+public class FutureTest {
+
+    /**
+     * 11:52:48.929273Waiting the Task Done
+     * 11:52:48.929368Task Start
+     * isDone 1 = false
+     * 3초 waiting
+     * isDone 2= true
+     * 11:52:51.933902 future.get() = Task Result
+     *
+     */
+    void testFuture() throws ExecutionException, InterruptedException {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+
+        Callable<String> callable = () ->{
+            System.out.println(LocalTime.now() + "Task Start");
+            Thread.sleep(3000L);
+            return "Task Result";
+        };
+
+        //Task 실행
+        Future<String> future = executor.submit(callable);
+
+        System.out.println(LocalTime.now() + "Waiting the Task Done");
+        System.out.println("isDone 1 = " + future.isDone());
+
+        //Task 결과 대기
+        String result = future.get();
+
+        System.out.println("isDone 2= " + future.isDone());
+        System.out.println(LocalTime.now() + " future.get() = " + result);
+    }
+}
